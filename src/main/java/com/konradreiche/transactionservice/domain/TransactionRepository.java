@@ -23,7 +23,7 @@ public class TransactionRepository implements ITransactionRepository {
         // Extend by type map
         Set<Transaction> transactions = transactionsByType.get(transaction.getType());
         if (transactions == null) {
-            transactions = new HashSet<>();
+            transactions = ConcurrentHashMap.newKeySet();
             transactionsByType.put(transaction.getType(), transactions);
         }
         transactions.add(transaction);
